@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
-#include <deque>
 #include "board.h"
 
 using namespace std;

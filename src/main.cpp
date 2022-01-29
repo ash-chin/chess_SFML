@@ -9,7 +9,6 @@
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <memory>
-#include <deque>
 #include <math.h>
 #include "board.h"
 
