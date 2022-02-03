@@ -10,7 +10,8 @@
 #include <iostream>
 #include <memory>
 #include <math.h>
-#include "board.h"
+#include "pieces.h"
+#include "gamemanager.h"
 
 using namespace std;
 using namespace sf;
@@ -34,16 +35,24 @@ int main()
 
     // start things up...
     RenderWindow window(VideoMode(winDim1, winDim2), "My Window");
-    window.setFramerateLimit(FPS);
-    
-    window.clear(bgColor);
+    window.setFramerateLimit(FPS);    
     window.mapPixelToCoords(Mouse::getPosition(window));
+    GameManager chessGame(bgColor);
+    cout << "Starting game..." << endl;
 
-    Board board(tileSize, offset);
-    board.drawBoard(window);
-    window.display();
-    cout << "called display..." << endl;
+    chessGame.startGame(tileSize, offset, window);
 
+    // EXPERIMENTING WITH INHERITANCE & ASSIGNMENTS
+    Pawn pawn(Color::Black);
+    King king(Color::White);
+    Piece& piece = pawn;
+    cout << "Calling printPiece...\n";
+    piece.printPiece();
+    Piece *pp;
+    Piece pie;
+    pp = &king;
+    pp->printPiece();
+    // ---------------------------------------------
     Event event;
 
     while(window.isOpen())
@@ -71,12 +80,12 @@ int main()
                     cout << "row: " << row << " col: " << col << " index: " << index << endl;
                     if((event.mouseButton.button == Mouse::Left) && (0<=index && index < 64))
                     {
-                        board.selectTile(index, window);
+                        chessGame.selectSpace(index, window);
                     }
                 }
             }
         }
     }
-
+    // delete empty;
     return 0;
 }

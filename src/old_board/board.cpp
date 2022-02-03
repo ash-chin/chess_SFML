@@ -24,6 +24,17 @@ void Tile::setColor(Color color)
     rect.setFillColor(color);
 }
 
+void Tile::setOutline(Color color, int t)
+{
+    rect.setOutlineColor(color);
+    rect.setOutlineThickness(t);
+}
+
+int Tile::getOutlineThickness()
+{
+    return rect.getOutlineThickness();
+}
+
 int Tile::getIndex() {return index;}
 
 bool Tile::isOpen(Color color)
@@ -32,17 +43,17 @@ bool Tile::isOpen(Color color)
     return isEmpty;
 }
 
-void Tile::printLocation()
-{
-    cout << "index: " << index << endl;
-}
+// Vector2f Tile::getLocation()
+// {
+//     return rect.getPosition();
+// }
 
 Color Tile::getColor()
 {
     return rect.getFillColor();
 }
 
-void Board::setBoard(int size, int offset)
+void Board::buildBoard(int size, int offset)
 {
     int row = 0;
     int col = 0;
@@ -80,12 +91,12 @@ void Board::setBoard(int size, int offset)
 
 Board::Board()
 {
-    setBoard(60, 0);
+    buildBoard(60, 0);
 }
 
 Board::Board(int size, int offset)
 {
-    setBoard(size, offset);
+    buildBoard(size, offset);
 }
 
 
@@ -96,7 +107,7 @@ void Board::drawBoard(RenderWindow& window)
     cout << "Drawing board..." << endl;
     for(int i = 0; i < 64; i++)
     {
-        tiles[i].rect.setOutlineThickness(0);
+        tiles[i].setOutline(Color::White, 0);
         window.draw(tiles[i].rect);
     }
 }
@@ -105,7 +116,7 @@ void Board::selectTile(int index, RenderWindow& window)
 {
     Color bgColor(128,128,128);
     window.clear(bgColor);
-    if(tiles[index].rect.getOutlineThickness())
+    if(tiles[index].getOutlineThickness())
     {
         drawBoard(window);
         window.display();
@@ -113,8 +124,7 @@ void Board::selectTile(int index, RenderWindow& window)
     else
     {
         drawBoard(window);
-        tiles[index].rect.setOutlineThickness(2);
-        tiles[index].rect.setOutlineColor(Color::Red);
+        tiles[index].setOutline(Color::Red, 2);
         window.draw(tiles[index].rect);
         window.display();
     }

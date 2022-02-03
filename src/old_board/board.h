@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
+#include "pieces.h"
 
 using namespace std;
 using namespace sf;
@@ -18,6 +19,8 @@ class Tile {
         Tile(int index, int x, int y, int size);
         ~Tile();
         void setColor(Color color);
+        void setOutline(Color color, int t);
+        int getOutlineThickness();
         int getIndex();
         // Called by piece, not board. Checks if color
         // matches and is open.
@@ -28,7 +31,7 @@ class Tile {
 
 class Board : public Tile {
     private:
-        void setBoard(int size, int offset);    // called by constructor
+        void buildBoard(int size, int offset);    // called by constructor
     public:
         vector<Tile> tiles;
         Board();

@@ -6,7 +6,7 @@ SET(CMAKE_CXX_LINK_FLAGS "-lGL")
 
 find_package(SFML 2.5.1 COMPONENTS graphics)
 
-set(SOURCES main.cpp board.cpp board.h)
+set(SOURCES main.cpp pieces.cpp gamemanager.cpp pieces.h gamemanager.h)
 
 add_executable(myapp ${SOURCES})
 

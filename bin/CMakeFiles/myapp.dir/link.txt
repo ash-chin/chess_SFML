@@ -1,0 +1,1 @@
+/usr/bin/c++   -lGL  CMakeFiles/myapp.dir/main.cpp.o CMakeFiles/myapp.dir/pieces.cpp.o CMakeFiles/myapp.dir/gamemanager.cpp.o  -o myapp  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1 
